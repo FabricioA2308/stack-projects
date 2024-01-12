@@ -1,0 +1,4 @@
+// our-domain.com/
+export default function HomePage() {
+  return <h1>The home page</h1>;
+}
