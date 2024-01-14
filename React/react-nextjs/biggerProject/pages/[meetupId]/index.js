@@ -22,9 +22,7 @@ export default function MeetupDetails(props) {
 export async function getStaticProps(context) {
   const meetupId = context.params.meetupId;
 
-  const client = await MongoClient.connect(
-    "mongodb+srv://fabricio:IA0RtzNhDtUCFIxO@clusternextjs.podv14i.mongodb.net/?retryWrites=true&w=majority"
-  );
+  const client = await MongoClient.connect();
 
   const db = client.db();
 
