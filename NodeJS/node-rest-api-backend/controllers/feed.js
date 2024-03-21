@@ -64,7 +64,6 @@ exports.getPosts = async (req, res, next) => {
 exports.postNewPosts = async (req, res, next) => {
   const errors = validationResult(req);
   const { title, content } = req.body;
-  let creator;
 
   if (!errors.isEmpty()) {
     const error = new Error("Validation failed. Please try again.");
@@ -92,12 +91,14 @@ exports.postNewPosts = async (req, res, next) => {
 
     user.posts.push(post);
 
-    await user.save();
+    const savedUser = await user.save();
 
     res.status(201).json({
       message: "Post created successfully.",
       post,
     });
+
+    return savedUser;
   } catch (err) {
     if (!err.statusCode) {
       err.statusCode = 500;
