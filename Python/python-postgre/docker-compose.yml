@@ -22,8 +22,8 @@ services:
       - ./.env
     volumes:
       - /var/cache/postgres_data:/var/lib/postgresql/data
-
-  postgresql_test:
+  
+  postgresql-test:
     image: postgres
     ports:
       - 5433:5432
@@ -31,7 +31,7 @@ services:
       - ./.env
     volumes:
       - /var/cache/postgres_data_test:/var/lib/postgresql/data
-
+  
   pgadmin:
     image: dpage/pgadmin4
     env_file:
