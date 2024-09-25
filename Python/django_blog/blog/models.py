@@ -23,7 +23,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     excerpt = models.CharField(max_length=100)
-    image_name = models.CharField(max_length=80)
+    image = models.ImageField(upload_to="images", null=True)
     date = models.DateField(auto_now=True)
     slug = models.SlugField(unique=True, default="", db_index=True)
     content = models.TextField(validators=[MinLengthValidator(10)])
@@ -31,4 +31,10 @@ class Post(models.Model):
     caption = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return f"'{self.title}': post created by {self.author} at {self.date}"
+        return f"'{self.title}', post created by {self.author} at {self.date}"
+    
+class Comment(models.Model):
+    user_name = models.CharField(max_length=120)
+    user_email = models.EmailField()
+    text = models.TextField(max_length=400)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
