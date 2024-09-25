@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Home page!{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/index.css"%}">
+    <link rel="stylesheet" href="{% static "blog/includes/post.css"%}">
+    <link rel="stylesheet" href="{% static "blog/includes/header.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% include "./includes/header.html" %}
+    
+    <section id="welcome">
+        <header>
+            <img src="{% static "blog/images/james.png" %}" alt="Author of this blog." />
+            <h2>FABRICIO'S BLOG</h2>
+        </header>
+        <p>Hi, I am Fabricio and i love to blog about tech and the world!</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My latest thoughts</h2>
+        
+        <ul>
+            {% for post in posts %}
+                {% include "blog/includes/post.html"  %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>What I do</h2>
+        <p>I love programming, I love to help other and I enjoy exploring new technologies!</p>
+        <p>My goal is to keep on growing as a developer!</p>
+    </section>
+{% endblock  %}
